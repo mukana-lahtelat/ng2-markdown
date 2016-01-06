@@ -12,12 +12,12 @@ To see a working example checkout the [ng2-markdown-component-demo][demo] projec
 
 1. Install the component via JSPM
   ```bash
-  jspm install github:evanplaice/ng2-markdown-component
+  jspm install ng2-markdown-component
   ```
 
 2. Import into your Angular2 component
   ```javascript
-  import { MarkdownComponent } from evanplaice/ng2-markdown-component;
+  import { MarkdownComponent } from ng2-markdown-component;
   ```
 
 3. Add the component to your `@View.directives`
@@ -50,27 +50,6 @@ To see a working example checkout the [ng2-markdown-component-demo][demo] projec
 - [css][css] - load CSS with the `import` syntax
 - [showdown][showdown] - parse Markdown to HTML
 - [prism][prism] - syntax-specific highlighting
-
-## Contributing
-
-It would be awesome if somebody is willing to test the component with other configurations (ex Typescript, Babel).
-
-For new features:
-- submit an issue with a basic proposal
-- fork and create a new feature branch
-- submit a PR that references the issue
-
-*Note: Feature requests start with a proposal so developers don't waste time/effort implementing changes that won't be included.*
-
-For bug fixes:
-- submit an issue describing the bug (if one doesn't already exist)
-- submit a PR that references the issue
-
-## Issues
-
-- [ ] not registered in the JSPM registry
-- [ ] only works with ES6 + Traceur * annotations enabled
-- [ ] provide an ES5 version by default (is this necessary?)
 
 [demo]: https://github.com/evanplaice/ng2-markdown-component-demo
 [css]: https://github.com/systemjs/plugin-css
