@@ -9,10 +9,11 @@ import {
 } from 'angular2/http';
 
 // external
-import showdown from 'showdown';
-import prism from 'prism';
-import 'prism/themes/prism-okaidia.css!';
+import Showdown from 'showdown';
+import Prism from 'prism';
+import 'prism/themes/prism-okaidia.css!css';
 
+//@Directive({
 @Directive({
   selector: 'ng2-markdown',
   inputs: [ 'src' ],
@@ -22,46 +23,53 @@ export class MarkdownComponent {
   constructor (@Inject(ElementRef) elementRef, @Inject(Http) http) {
     // used for http requests
     this.http = http;
-    // used for markdown->html conversion
-    this.converter = new showdown.converter();
-    // reference to the HTML element
+    // reference to the DOM element
     this.element = elementRef.nativeElement;
   }
 
   ngOnInit () {
     // element with 'src' attribute set
     if (this.src) {
-      this.convertFile();
-      this.style();
+      this.fromFile(this.src);
     }
 
     // element containing markdown
-    if(!this.src) {
-      this.convertRAW();
+    if (!this.src) {
+      this.fromRAW();
     }
   }
 
-  convertFile() {
-    this.http.get(this.src).toPromise()
+  fromFile(src) {
+    this.http.get(src).toPromise()
     .then((res) => {
-      this.element.innerHTML = res._body;
+       return this.prepare(res._body);
     })
-    .then(() => {
-      this.convertRAW();
+    .then((markdown) => {
+      return this.process(markdown);
+    })
+    .then((html) => {
+      this.element.innerHTML = html;
+      this.highlight(html);
     })
   }
 
-  // converts markdown->HTML and saves
-  //  saves the result in element.innerHTML
-  convertRAW () {
-    this.element.innerHTML = this.converter.makeHtml(
-      this.element.innerHTML.split('\n').map((line) => line.trim()).join('\n')
-    );
-    this.style();
+  fromRAW() {
+    let raw = this.element.innerHTML;
+    let html = this.process(this.prepare(raw));
+    this.element.innerHTML = html;
+    this.highlight(html);
   }
 
-  // styles markdown source code
-  style () {
-    prism.highlightAll(this.element.querySelectorAll('code'));
+  prepare(raw) {
+    return raw.split('\n').map((line) => line.trim()).join('\n')
+  }
+
+  process(markdown) {
+    let converter = new Showdown.converter();
+    return converter.makeHtml(markdown)
+  }
+
+  highlight(html){
+    Prism.highlightAll();
   }
 }
