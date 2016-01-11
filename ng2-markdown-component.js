@@ -19,7 +19,7 @@ import 'prism/themes/prism-okaidia.css!';
   providers: [ HTTP_PROVIDERS ]
 })
 export class MarkdownComponent {
-  constructor (@Inject(ElementRef) elementRef, http) {
+  constructor (@Inject(ElementRef) elementRef, @Inject(Http) http) {
     // used for http requests
     this.http = http;
     // used for markdown->html conversion
