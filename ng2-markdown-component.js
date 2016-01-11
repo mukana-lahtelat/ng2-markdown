@@ -1,12 +1,5 @@
-import {
-  Directive,
-  Inject,
-  ElementRef
-} from 'angular2/core';
-import {
-  HTTP_PROVIDERS,
-  Http
-} from 'angular2/http';
+import { Directive, Inject, ElementRef } from 'angular2/core';
+import { HTTP_PROVIDERS, Http } from 'angular2/http';
 
 // external
 import Showdown from 'showdown';
@@ -32,7 +25,6 @@ export class MarkdownComponent {
     if (this.src) {
       this.fromFile(this.src);
     }
-
     // element containing markdown
     if (!this.src) {
       this.fromRAW();
