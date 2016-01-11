@@ -1,5 +1,6 @@
 import {
   Directive,
+  Inject,
   ElementRef
 } from 'angular2/core';
 import {
@@ -18,7 +19,7 @@ import 'prism/themes/prism-okaidia.css!';
   providers: [ HTTP_PROVIDERS ]
 })
 export class MarkdownComponent {
-  constructor (elementRef, http) {
+  constructor (@Inject(ElementRef) elementRef, http) {
     console.log('markdown');
 
     // used for http requests
@@ -40,11 +41,6 @@ export class MarkdownComponent {
     if(!this.src) {
       this.convertRAW();
     }
-  }
-
-  // ES7 dependency injection
-  static get parameters () {
-    return [[ElementRef], [Http]];
   }
 
   convertFile() {
