@@ -9,7 +9,7 @@ import 'prism/themes/prism-okaidia.css!css';
 //@Directive({
 @Directive({
   selector: 'ng2-markdown',
-  inputs: [ 'src' ],
+  inputs: [ 'src', 'data' ],
   providers: [ HTTP_PROVIDERS ]
 })
 export class MarkdownComponent {
@@ -24,6 +24,10 @@ export class MarkdownComponent {
     // element with 'src' attribute set
     if (this.src) {
       this.fromFile(this.src);
+    }
+    // element with 'data' attribute set
+    if (this.data) {
+      this.fromData(this.data);
     }
     // element containing markdown
     if (!this.src) {
@@ -43,6 +47,13 @@ export class MarkdownComponent {
       this.element.innerHTML = html;
       this.highlight(html);
     })
+  }
+
+  fromData(data) {
+    let raw = data;
+    let html = this.process(this.prepare(raw));
+    this.element.innerHTML = html;
+    this.highlight(html);
   }
 
   fromRAW() {
