@@ -4,7 +4,7 @@ A Markdown component for Angular2.
 
 This repo is intended to be loaded as a JSPM package and therefore provides the bare minimum.
 
-To see a working example checkout the [ng2-markdown-component-demo][demo] project.
+To see a working example checkout the [ng2-markdown-demo][demo] project.
 
 ## Usage
 
@@ -12,12 +12,12 @@ To see a working example checkout the [ng2-markdown-component-demo][demo] projec
 
 1. Install the component via JSPM
   ```bash
-  jspm install ng2-markdown-component
+  jspm install ng2-markdown
   ```
 
 2. Import into your Angular2 component
   ```javascript
-  import { MarkdownComponent } from ng2-markdown-component;
+  import { MarkdownComponent } from ng2-markdown;
   ```
 
 3. Add the component to your `@View.directives`
@@ -32,7 +32,7 @@ To see a working example checkout the [ng2-markdown-component-demo][demo] projec
 
 4. Use the component in your templateURL
   ```javascript
-  <ng2-markdowm>
+  <ng2-markdown>
   ### MARKDOWN
   this really [works](google.com)
   ``language-javascript
@@ -51,7 +51,7 @@ To see a working example checkout the [ng2-markdown-component-demo][demo] projec
 - [showdown][showdown] - parse Markdown to HTML
 - [prism][prism] - syntax-specific highlighting
 
-[demo]: https://github.com/evanplaice/ng2-markdown-component-demo
+[demo]: https://github.com/evanplaice/ng2-markdown-demo
 [css]: https://github.com/systemjs/plugin-css
 [showdown]: https://github.com/showdownjs/showdown
 [prism]: https://github.com/PrismJS/prism
