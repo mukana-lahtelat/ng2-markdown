@@ -12,7 +12,7 @@ To see a working example checkout the [ng2-markdown-demo][demo] project.
 
 1. Install the component via JSPM
   ```bash
-  jspm install ng2-markdown
+  jspm install ng2-markdown-component
   ```
 
 2. Import into your Angular2 component
