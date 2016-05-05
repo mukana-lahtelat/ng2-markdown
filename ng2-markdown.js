@@ -2,7 +2,7 @@ import { Directive, Inject, ElementRef } from 'angular2/core';
 import { HTTP_PROVIDERS, Http } from 'angular2/http';
 
 // external
-import { Showdown } from 'showdown';
+import Showdown from 'showdown';
 import { Prism } from 'prism';
 import 'prism/themes/prism-okaidia.css!css';
 
