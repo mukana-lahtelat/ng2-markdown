@@ -1,5 +1,5 @@
-import { Directive, Inject, ElementRef } from 'angular2/core';
-import { HTTP_PROVIDERS, Http } from 'angular2/http';
+import { Directive, Inject, ElementRef } from 'angular-core';
+import { HTTP_PROVIDERS, Http } from 'angular-http';
 
 // external
 import Showdown from 'showdown';
