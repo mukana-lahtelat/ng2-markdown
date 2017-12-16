@@ -12,10 +12,6 @@ import 'prism/themes/prism-okaidia.css!css';
   selector: 'ng2-markdown',
   inputs: [ 'src', 'data' ]
 })
-@NgModule({
-  imports: [
-    HttpModule
-  ]
 })
 export class MarkdownComponent {
   constructor (@Inject(ElementRef) elementRef, @Inject(Http) http) {
