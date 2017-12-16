@@ -1,6 +1,20 @@
 {
-  "registry": "jspm",
+  "name": "ng2-markdown",
+  "description": "<ng2-markdown> - Angular2 Markdown Web Component with PrismJS syntax highlighting",
+  "author": "Evan Plaice",
+  "license": "MIT",
+  "main": "index.js",
   "format": "es6",
+  "registry": "jspm",
+  "homepage": "https://github.com/evanplaice/ng2-markdown#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evanplaice/ng2-markdown.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evanplaice/ng2-markdown/issues"
+  },
+  "scripts": {},
   "dependencies": {
     "css": "github:systemjs/plugin-css@0.1.20",
     "prism": "github:PrismJS/prism@gh-pages",
