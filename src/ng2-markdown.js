@@ -1,5 +1,6 @@
+import { NgModule } from '@angular/core';
 import { Directive, Inject, ElementRef } from '@angular/core';
-import { HTTP_PROVIDERS, Http } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 
 // external
 import Showdown from 'showdown';
@@ -9,8 +10,12 @@ import 'prism/themes/prism-okaidia.css!css';
 //@Directive({
 @Directive({
   selector: 'ng2-markdown',
-  inputs: [ 'src', 'data' ],
-  providers: [ HTTP_PROVIDERS ]
+  inputs: [ 'src', 'data' ]
+})
+@NgModule({
+  imports: [
+    HttpModule
+  ]
 })
 export class MarkdownComponent {
   constructor (@Inject(ElementRef) elementRef, @Inject(Http) http) {
