@@ -1,6 +1,6 @@
 # &lt;ng2-markdown&gt;
 
-A Markdown component for Angular2.
+A Markdown component for Angular2
 
 This repo is intended to be loaded as a JSPM package and therefore provides the bare minimum.
 
