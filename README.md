@@ -6,42 +6,53 @@ This repo is intended to be loaded as a JSPM package and therefore provides the 
 
 To see a working example checkout the [ng2-markdown-demo][demo] project.
 
+*Now compatible with Angular 4+*
+
 ## Usage
 
 *To use this component:*
 
 1. Install the component via JSPM
   ```bash
-  jspm install ng2-markdown-component
+  jspm install ng2-markdown
   ```
 
-2. Import into your Angular2 component
+2. Loading the ng2-markdown component
+
+  Import as a module declaration
+  
   ```javascript
-  import { MarkdownComponent } from ng2-markdown;
+  import { MarkdownComponent } from 'ng2-markdown';
+  // ...
+  declarations: [ MarkdownComponent ]
   ```
 
-3. Add the component to your `@View.directives`
+*Or*
+
+  Import the MarkdownModule
+
   ```javascript
-  ...
-  @View({
-    templateURL: 'template.html',
-    directives: [ MarkdownComponent ]
-  })
-  ...
+  import { MarkdownModule } from 'ng2-markdown';
+  // ...
+  imports: [ MarkdownModule ]
   ```
 
-4. Use the component in your templateURL
+3. Usint the ng2-markdown component
+
+Load Markdown content from a file
+
   ```javascript
-  <ng2-markdown>
-  ### MARKDOWN
-  this really [works](google.com)
-  ``language-javascript
-  System.import('stuff').then(function(m) {
-    // modules yay
-  });
-  ``
-  </ng2-markdown>
+  <ng2-markdown [src]='/path/to/file'></ng2-markdown>
   ```
+
+*Or*
+
+Load Markdown data from directly from a component
+
+  ```javascript
+  <ng2-markdown [data]='data'></ng2-markdown>
+  ```
+That's it... Yes, really. 
 
 *Note: The component has only been tested using Traceur/ES6 with annotations enabled.*
 
@@ -50,6 +61,13 @@ To see a working example checkout the [ng2-markdown-demo][demo] project.
 - [css][css] - load CSS with the `import` syntax
 - [showdown][showdown] - parse Markdown to HTML
 - [prism][prism] - syntax-specific highlighting
+
+## Roadmap
+
+- Provide ES5 production bundles for use with Typescript
+- Eliminate reliance on elementRef for universal compatibility
+- Remove the 'Raw' feature
+- Change build process to use Webpack
 
 [demo]: https://github.com/evanplaice/ng2-markdown-demo
 [css]: https://github.com/systemjs/plugin-css
