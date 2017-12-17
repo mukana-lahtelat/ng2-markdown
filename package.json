@@ -21,8 +21,12 @@
     "showdown": "github:showdownjs/showdown@^0.3.1"
   },
   "devDependencies": {
-    "angular2": "npm:angular2@^2.0.0-beta.0",
-    "reflect-metadata": "npm:reflect-metadata@^0.1.2",
-    "zone.js": "npm:zone.js@^0.5.8"
+    "@angular/common": "^4.4.6",
+    "@angular/core": "^4.4.6",
+    "@angular/http": "^4.4.6",
+    "@angular/platform-browser": "^4.4.6",
+    "reflect-metadata": "^0.1.10",
+    "rxjs": "^5.5.5",
+    "zone.js": "^0.8.18"
   }
 }
