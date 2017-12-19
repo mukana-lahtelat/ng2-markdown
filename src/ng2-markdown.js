@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { Component, Inject, ElementRef } from '@angular/core';
+import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 
 // external
