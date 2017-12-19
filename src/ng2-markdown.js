@@ -28,10 +28,6 @@ export class MarkdownComponent {
     if (this.data) {
       this.fromData(this.data);
     }
-    // element containing markdown
-    if (!this.src) {
-      this.fromRAW();
-    }
   }
 
   fromFile(src) {
@@ -55,12 +51,6 @@ export class MarkdownComponent {
     this.highlight(html);
   }
 
-  fromRAW() {
-    let raw = this.element.innerHTML;
-    let html = this.process(this.prepare(raw));
-    this.element.innerHTML = html;
-    this.highlight(html);
-  }
 
   prepare(raw) {
     return raw.split('\n').map((line) => line.trim()).join('\n')
