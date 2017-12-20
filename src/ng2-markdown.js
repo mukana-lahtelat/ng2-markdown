@@ -1,7 +1,7 @@
 import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 import { Converter } from 'showdown';
-import { highlightAll } from 'prismjs';
+import { Prism, highlightAll } from 'prismjs';
 
 @Component({
   selector: 'ng2-markdown',
