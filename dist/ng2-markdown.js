@@ -131,7 +131,7 @@ var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)
       if (this.highlight) {
         // ensure the lifecycle event triggering doesn't eat this call
         setTimeout(function () {
-          Prism.highlightAll();
+          (0, _prismjs.highlightAll)();
         }, 50);
 
         // this lifecycle event gets triggered ridiculously often
