@@ -7,7 +7,6 @@
   "browser": "dist/ng2-markdown.js",
   "module": "src/ng2-markdown.js",
   "format": "es6",
-  "registry": "jspm",
   "homepage": "https://github.com/evanplaice/ng2-markdown#readme",
   "repository": {
     "type": "git",
