@@ -1,10 +1,8 @@
 import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 
-// external
-import Showdown from 'showdown';
-import { Prism } from 'prism';
-import 'prism/themes/prism-okaidia.css!css';
+import { Converter } from 'showdown';
+import 'prismjs';
 
 @Component({
   selector: 'ng2-markdown',
@@ -57,7 +55,7 @@ export class MarkdownComponent {
   }
 
   process(markdown) {
-    let converter = new Showdown.converter();
+    let converter = new Converter();
     return converter.makeHtml(markdown)
   }
 
