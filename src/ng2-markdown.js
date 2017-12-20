@@ -52,13 +52,9 @@ export class MarkdownComponent {
   }
 
   fromData(data) {
-    this.prepare(data).toPromise()
-      .then((markdown) => {
-        return this.process(markdown)
-      })
-      .then((html) => {
-        this.element.innerHTML = html;
-      });
+    let html = this.prepare(data);
+    html = this.process(html);
+    this.element.innerHTML = html;
   }
 
   prepare(raw) {
