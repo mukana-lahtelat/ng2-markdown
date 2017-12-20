@@ -155,13 +155,9 @@ var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)
   }, {
     key: 'fromData',
     value: function fromData(data) {
-      var _this2 = this;
-
-      this.prepare(data).toPromise().then(function (markdown) {
-        return _this2.process(markdown);
-      }).then(function (html) {
-        _this2.element.innerHTML = html;
-      });
+      var html = this.prepare(data);
+      html = this.process(html);
+      this.element.innerHTML = html;
     }
   }, {
     key: 'prepare',
