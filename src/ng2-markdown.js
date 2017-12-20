@@ -1,7 +1,7 @@
 import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 import { Converter } from 'showdown';
-import 'prismjs';
+import { highlightAll } from 'prismjs';
 
 @Component({
   selector: 'ng2-markdown',
@@ -30,7 +30,7 @@ export class MarkdownComponent {
   ngAfterViewChecked() {
     if (this.highlight) {
       // ensure the lifecycle event triggering doesn't eat this call
-      setTimeout(() => { Prism.highlightAll(); });
+      setTimeout(() => { Prism.highlightAll(); }, 50);
 
       // this lifecycle event gets triggered ridiculously often
       //   ensure highlightAll() only fires once.

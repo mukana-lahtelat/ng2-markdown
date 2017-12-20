@@ -95,7 +95,7 @@ var _http = __webpack_require__(2);
 
 var _showdown = __webpack_require__(3);
 
-__webpack_require__(4);
+var _prismjs = __webpack_require__(4);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -132,7 +132,7 @@ var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)
         // ensure the lifecycle event triggering doesn't eat this call
         setTimeout(function () {
           Prism.highlightAll();
-        });
+        }, 50);
 
         // this lifecycle event gets triggered ridiculously often
         //   ensure highlightAll() only fires once.
