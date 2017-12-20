@@ -29,7 +29,6 @@ export class MarkdownComponent {
 
   ngAfterViewChecked() {
     if (this.highlight) {
-      Prism.highlightAll();
       // ensure the lifecycle event triggering doesn't eat this call
       setTimeout(() => { Prism.highlightAll(); });
 
