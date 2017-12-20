@@ -27,6 +27,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: 'ng2-markdown.js',
-    libraryTarget: 'umd',
+    libraryTarget: 'umd'
   }
 };
