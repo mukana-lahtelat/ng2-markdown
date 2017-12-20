@@ -1,12 +1,11 @@
 import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
-
 import { Converter } from 'showdown';
 import 'prismjs';
 
 @Component({
   selector: 'ng2-markdown',
-  inputs: [ 'src', 'data' ],
+  inputs: [ 'src', 'data', 'highlight' ],
   template: ''
 })
 export class MarkdownComponent {
@@ -28,6 +27,12 @@ export class MarkdownComponent {
     }
   }
 
+  ngAfterViewChecked() {
+    if (this.highlight) {
+      Prism.highlightAll();
+    }
+  }
+
   fromFile(src) {
     this.http.get(src).toPromise()
     .then((res) => {
@@ -38,7 +43,6 @@ export class MarkdownComponent {
     })
     .then((html) => {
       this.element.innerHTML = html;
-      this.highlight(html);
     })
   }
 
@@ -49,10 +53,8 @@ export class MarkdownComponent {
       })
       .then((html) => {
         this.element.innerHTML = html;
-        this.highlight(html);
       });
   }
-
 
   prepare(raw) {
     return raw.split('\n').map((line) => line.trim()).join('\n')
@@ -61,9 +63,5 @@ export class MarkdownComponent {
   process(markdown) {
     let converter = new Converter();
     return converter.makeHtml(markdown)
-  }
-
-  highlight(html){
-    Prism.highlightAll();
   }
 }
