@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
 
   entry: './src/ng2-markdown.js',
+  devtool: 'source-map',
   module: {
     rules: [
       {

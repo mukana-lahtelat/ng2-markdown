@@ -5568,3 +5568,4 @@ module.exports = g;
 /***/ })
 /******/ ]);
 });
+//# sourceMappingURL=ng2-markdown.js.map
