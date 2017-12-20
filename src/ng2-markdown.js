@@ -43,10 +43,14 @@ export class MarkdownComponent {
   }
 
   fromData(data) {
-    let raw = data;
-    let html = this.process(this.prepare(raw));
-    this.element.innerHTML = html;
-    this.highlight(html);
+    this.prepare(data).toPromise()
+      .then((markdown) => {
+        return this.process(markdown)
+      })
+      .then((html) => {
+        this.element.innerHTML = html;
+        this.highlight(html);
+      });
   }
 
 
