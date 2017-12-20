@@ -30,6 +30,10 @@ export class MarkdownComponent {
   ngAfterViewChecked() {
     if (this.highlight) {
       Prism.highlightAll();
+
+      // this lifecycle event gets triggered ridiculously often
+      //   ensure highlightAll() only fires once.
+      this.highlight = false;
     }
   }
 
