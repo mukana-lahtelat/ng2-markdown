@@ -17,7 +17,7 @@
     "url": "https://github.com/evanplaice/ng2-markdown/issues"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "webpack && webpack --config webpack.min.js"
   },
   "dependencies": {
     "prismjs": "^1.9.0",
