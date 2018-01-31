@@ -18,9 +18,10 @@
   },
   "scripts": {
     "build": "webpack && webpack --config webpack.min.js",
-    "preversion": "",
-    "version": "npm run build && git add -A dist",
-    "postversion": "git push && git push --tags && rm -rf dist"
+    "preversion": "npm run build && git add -A dist",
+    "version": "git push",
+    "postversion": "git push --tags",
+    "postpublish": "rm -rf dist"
   },
   "dependencies": {
     "prismjs": "^1.9.0",
