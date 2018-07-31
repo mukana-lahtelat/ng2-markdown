@@ -2,6 +2,8 @@ import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 import { Converter } from 'showdown';
 import 'prismjs';
+import 'showdown-youtube';
+
 
 @Component({
   selector: 'ng2-markdown',
@@ -14,6 +16,29 @@ export class MarkdownComponent {
     this.http = http;
     // reference to the DOM element
     this.element = elementRef.nativeElement;
+    showdown.extension('targetlink', function() {
+      return [{
+        type: 'lang',
+        regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
+        replace: function(wholematch, linkText, url, a, b, title, c, target) {
+    
+          var result = '<a href="' + url + '"';
+    
+          if (typeof title != 'undefined' && title !== '' && title !== null) {
+            title = title.replace(/"/g, '&quot;');
+            title = showdown.helper.escapeCharacters(title, '*_', false);
+            result += ' title="' + title + '"';
+          }
+    
+          if (typeof target != 'undefined' && target !== '' && target !== null) {
+            result += ' target="' + target + '"';
+          }
+    
+          result += '>' + linkText + '</a>';
+          return result;
+        }
+      }];
+    });
   }
 
   ngOnInit () {
@@ -62,7 +87,9 @@ export class MarkdownComponent {
   }
 
   process(markdown) {
-    let converter = new Converter();
+    let converter = new Converter({
+      extensions: ['targetlink', 'youtube']
+    });
     return converter.makeHtml(markdown)
   }
 }
