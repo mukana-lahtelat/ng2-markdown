@@ -65,14 +65,6 @@ export class MarkdownComponent {
   }
 
   process(markdown) {
-    // Open all links in new tab.
-    showdown.extension('targetlink', function() {
-      return [{
-        type: 'html',
-        regex: /(<a [^>]+?)(>.*<\/a>)/g,
-        replace: '$1 target="_blank"$2'
-      }];
-    });
     let converter = new Converter({
       extensions: ['targetlink', 'youtube']
     });

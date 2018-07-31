@@ -4628,29 +4628,6 @@ var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)
     this.http = http;
     // reference to the DOM element
     this.element = elementRef.nativeElement;
-    showdown.extension('targetlink', function () {
-      return [{
-        type: 'lang',
-        regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
-        replace: function replace(wholematch, linkText, url, a, b, title, c, target) {
-
-          var result = '<a href="' + url + '"';
-
-          if (typeof title != 'undefined' && title !== '' && title !== null) {
-            title = title.replace(/"/g, '&quot;');
-            title = showdown.helper.escapeCharacters(title, '*_', false);
-            result += ' title="' + title + '"';
-          }
-
-          if (typeof target != 'undefined' && target !== '' && target !== null) {
-            result += ' target="' + target + '"';
-          }
-
-          result += '>' + linkText + '</a>';
-          return result;
-        }
-      }];
-    });
   }
 
   _createClass(MarkdownComponent, [{
@@ -5645,7 +5622,8 @@ module.exports = g;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! showdown-youtube 29-11-2016 */(function (extension) {
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! showdown-youtube 31-07-2018 */
+(function (extension) {
   'use strict';
 
   if (typeof showdown !== 'undefined') {
@@ -5665,22 +5643,22 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   'use strict';
 
   var svg =
-      '<div class="youtube-preview" style="width:%2; height:%3; background-color:#333; position:relative;">' +
-      '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" ' +
-      '     width="100" height="70" viewBox="0 0 100 70"' +
-      '     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">' +
-      '    <defs>' +
-      '      <linearGradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">' +
-      '        <stop offset="0%" style="stop-color:rgb(229,45,49);stop-opacity:1" />' +
-      '        <stop offset="100%" style="stop-color:rgb(191,23,29);stop-opacity:1" />' +
-      '      </linearGradient>' +
-      '    </defs>' +
-      '    <rect width="100%" height="100%" rx="26" fill="url(#grad1)"/>' +
-      '    <polygon points="35,20 70,35 35,50" fill="#fff"/>' +
-      '    <polygon points="35,20 70,35 64,37 35,21" fill="#e8e0e0"/>' +
-      '</svg>' +
-      '<div style="text-align:center; padding-top:10px; color:#fff"><a href="%1">%1</a></div>' +
-      '</div>',
+    '<div class="youtube-preview" style="width:%2; height:%3; background-color:#333; position:relative;">' +
+    '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" ' +
+    '     width="100" height="70" viewBox="0 0 100 70"' +
+    '     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">' +
+    '    <defs>' +
+    '      <linearGradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">' +
+    '        <stop offset="0%" style="stop-color:rgb(229,45,49);stop-opacity:1" />' +
+    '        <stop offset="100%" style="stop-color:rgb(191,23,29);stop-opacity:1" />' +
+    '      </linearGradient>' +
+    '    </defs>' +
+    '    <rect width="100%" height="100%" rx="26" fill="url(#grad1)"/>' +
+    '    <polygon points="35,20 70,35 35,50" fill="#fff"/>' +
+    '    <polygon points="35,20 70,35 64,37 35,21" fill="#e8e0e0"/>' +
+    '</svg>' +
+    '<div style="text-align:center; padding-top:10px; color:#fff"><a href="%1">%1</a></div>' +
+    '</div>',
     img = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" width="%2" height="%3">',
     iframe = '<iframe src="%1" width="%2" height="%3" frameborder="0" allowfullscreen></iframe>',
     imgRegex = /(?:<p>)?<img.*?src="(.+?)"(.*?)\/?>(?:<\/p>)?/gi,
@@ -5714,6 +5692,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       height: height
     };
   }
+  showdown.extension('targetlink', function () {
+    return [{
+      type: 'html',
+      regex: /(<a [^>]+?)(>.*<\/a>)/g,
+      replace: '$1 target="_blank"$2'
+    }];
+  });
   showdown.extension('youtube', function () {
     return [
       {
@@ -5728,6 +5713,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
               m, fUrl = '';
             if ((m = shortYoutubeRegex.exec(url)) || (m = fullYoutubeRegex.exec(url))) {
               fUrl = 'https://www.youtube.com/embed/' + m[1] + '?rel=0';
+              if (options.youtubejsapi) {
+                fUrl += '&enablejsapi=1';
+              }
             } else if ((m = vimeoRegex.exec(url))) {
               fUrl = 'https://player.vimeo.com/video/' + m[1];
             } else {
