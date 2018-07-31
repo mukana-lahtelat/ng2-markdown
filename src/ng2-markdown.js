@@ -3,7 +3,7 @@ import { HttpModule, Http } from '@angular/http';
 import { Converter } from 'showdown';
 import 'prismjs';
 import 'showdown-youtube';
-import 'showdown';
+import * as showdown from 'showdown';
 
 
 @Component({
