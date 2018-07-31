@@ -1,9 +1,8 @@
 import { NgModule, Component, Inject, ElementRef } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
-import { Converter } from 'showdown';
+import { Converter, Showdown } from 'showdown';
 import 'prismjs';
 import 'showdown-youtube';
-import * as showdown from 'showdown';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class MarkdownComponent {
     this.http = http;
     // reference to the DOM element
     this.element = elementRef.nativeElement;
-    showdown.extension('targetlink', function() {
+    Showdown.extension('targetlink', function() {
       return [{
         type: 'lang',
         regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
