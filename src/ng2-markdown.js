@@ -17,29 +17,6 @@ export class MarkdownComponent {
     this.http = http;
     // reference to the DOM element
     this.element = elementRef.nativeElement;
-    showdown.extension('targetlink', function() {
-      return [{
-        type: 'lang',
-        regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
-        replace: function(wholematch, linkText, url, a, b, title, c, target) {
-    
-          var result = '<a href="' + url + '"';
-    
-          if (typeof title != 'undefined' && title !== '' && title !== null) {
-            title = title.replace(/"/g, '&quot;');
-            title = showdown.helper.escapeCharacters(title, '*_', false);
-            result += ' title="' + title + '"';
-          }
-    
-          if (typeof target != 'undefined' && target !== '' && target !== null) {
-            result += ' target="' + target + '"';
-          }
-    
-          result += '>' + linkText + '</a>';
-          return result;
-        }
-      }];
-    });
   }
 
   ngOnInit () {
@@ -88,6 +65,14 @@ export class MarkdownComponent {
   }
 
   process(markdown) {
+    // Open all links in new tab.
+    showdown.extension('targetlink', function() {
+      return [{
+        type: 'html',
+        regex: /(<a [^>]+?)(>.*<\/a>)/g,
+        replace: '$1 target="_blank"$2'
+      }];
+    });
     let converter = new Converter({
       extensions: ['targetlink', 'youtube']
     });
