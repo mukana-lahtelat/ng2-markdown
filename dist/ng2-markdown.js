@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("@angular/core"), require("@angular/http")) : factory(root["@angular/core"], root["@angular/http"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,129 +70,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MarkdownComponent = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _dec, _class;
-
-var _core = __webpack_require__(1);
-
-var _http = __webpack_require__(2);
-
-var _showdown = __webpack_require__(3);
-
-__webpack_require__(4);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)({
-  selector: 'ng2-markdown',
-  inputs: ['src', 'data', 'highlight'],
-  template: ''
-}), _dec(_class = function () {
-  function MarkdownComponent(elementRef, http) {
-    _classCallCheck(this, MarkdownComponent);
-
-    // used for http requests
-    this.http = http;
-    // reference to the DOM element
-    this.element = elementRef.nativeElement;
-  }
-
-  _createClass(MarkdownComponent, [{
-    key: 'ngOnInit',
-    value: function ngOnInit() {
-      // element with 'src' attribute set
-      if (this.src) {
-        this.fromFile(this.src);
-      }
-      // element with 'data' attribute set
-      if (this.data) {
-        this.fromData(this.data);
-      }
-    }
-  }, {
-    key: 'ngAfterViewChecked',
-    value: function ngAfterViewChecked() {
-      if (this.highlight) {
-        // ensure the lifecycle event triggering doesn't eat this call
-        setTimeout(function () {
-          Prism.highlightAll();
-        }, 100);
-
-        // this lifecycle event gets triggered ridiculously often
-        //   ensure highlightAll() only fires once.
-        this.highlight = false;
-      }
-    }
-  }, {
-    key: 'fromFile',
-    value: function fromFile(src) {
-      var _this = this;
-
-      this.http.get(src).toPromise().then(function (res) {
-        return _this.prepare(res._body);
-      }).then(function (markdown) {
-        return _this.process(markdown);
-      }).then(function (html) {
-        _this.element.innerHTML = html;
-      });
-    }
-  }, {
-    key: 'fromData',
-    value: function fromData(data) {
-      var html = this.prepare(data);
-      html = this.process(html);
-      this.element.innerHTML = html;
-    }
-  }, {
-    key: 'prepare',
-    value: function prepare(raw) {
-      return raw.split('\n').map(function (line) {
-        return line.trim();
-      }).join('\n');
-    }
-  }, {
-    key: 'process',
-    value: function process(markdown) {
-      var converter = new _showdown.Converter();
-      return converter.makeHtml(markdown);
-    }
-  }]);
-
-  return MarkdownComponent;
-}()) || _class);
-(0, _core.Inject)(_core.ElementRef)(MarkdownComponent, null, 0);
-(0, _core.Inject)(_http.Http)(MarkdownComponent, null, 1);
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;;/*! showdown v 1.8.6 - 22-12-2017 */
@@ -4703,6 +4585,151 @@ if (true) {
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MarkdownComponent = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
+
+var _core = __webpack_require__(2);
+
+var _http = __webpack_require__(3);
+
+var _showdown = __webpack_require__(0);
+
+__webpack_require__(4);
+
+__webpack_require__(6);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)({
+  selector: 'ng2-markdown',
+  inputs: ['src', 'data', 'highlight'],
+  template: ''
+}), _dec(_class = function () {
+  function MarkdownComponent(elementRef, http) {
+    _classCallCheck(this, MarkdownComponent);
+
+    // used for http requests
+    this.http = http;
+    // reference to the DOM element
+    this.element = elementRef.nativeElement;
+    showdown.extension('targetlink', function () {
+      return [{
+        type: 'lang',
+        regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
+        replace: function replace(wholematch, linkText, url, a, b, title, c, target) {
+
+          var result = '<a href="' + url + '"';
+
+          if (typeof title != 'undefined' && title !== '' && title !== null) {
+            title = title.replace(/"/g, '&quot;');
+            title = showdown.helper.escapeCharacters(title, '*_', false);
+            result += ' title="' + title + '"';
+          }
+
+          if (typeof target != 'undefined' && target !== '' && target !== null) {
+            result += ' target="' + target + '"';
+          }
+
+          result += '>' + linkText + '</a>';
+          return result;
+        }
+      }];
+    });
+  }
+
+  _createClass(MarkdownComponent, [{
+    key: 'ngOnInit',
+    value: function ngOnInit() {
+      // element with 'src' attribute set
+      if (this.src) {
+        this.fromFile(this.src);
+      }
+      // element with 'data' attribute set
+      if (this.data) {
+        this.fromData(this.data);
+      }
+    }
+  }, {
+    key: 'ngAfterViewChecked',
+    value: function ngAfterViewChecked() {
+      if (this.highlight) {
+        // ensure the lifecycle event triggering doesn't eat this call
+        setTimeout(function () {
+          Prism.highlightAll();
+        }, 100);
+
+        // this lifecycle event gets triggered ridiculously often
+        //   ensure highlightAll() only fires once.
+        this.highlight = false;
+      }
+    }
+  }, {
+    key: 'fromFile',
+    value: function fromFile(src) {
+      var _this = this;
+
+      this.http.get(src).toPromise().then(function (res) {
+        return _this.prepare(res._body);
+      }).then(function (markdown) {
+        return _this.process(markdown);
+      }).then(function (html) {
+        _this.element.innerHTML = html;
+      });
+    }
+  }, {
+    key: 'fromData',
+    value: function fromData(data) {
+      var html = this.prepare(data);
+      html = this.process(html);
+      this.element.innerHTML = html;
+    }
+  }, {
+    key: 'prepare',
+    value: function prepare(raw) {
+      return raw.split('\n').map(function (line) {
+        return line.trim();
+      }).join('\n');
+    }
+  }, {
+    key: 'process',
+    value: function process(markdown) {
+      var converter = new _showdown.Converter({
+        extensions: ['targetlink', 'youtube']
+      });
+      return converter.makeHtml(markdown);
+    }
+  }]);
+
+  return MarkdownComponent;
+}()) || _class);
+(0, _core.Inject)(_core.ElementRef)(MarkdownComponent, null, 0);
+(0, _core.Inject)(_http.Http)(MarkdownComponent, null, 1);
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4728,7 +4755,7 @@ var _self = (typeof window !== 'undefined')
 var Prism = (function(){
 
 // Private helper vars
-var lang = /\blang(?:uage)?-(\w+)\b/i;
+var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
 var _ = _self.Prism = {
@@ -4757,23 +4784,38 @@ var _ = _self.Prism = {
 		},
 
 		// Deep clone a language definition (e.g. to extend it)
-		clone: function (o) {
+		clone: function (o, visited) {
 			var type = _.util.type(o);
+			visited = visited || {};
 
 			switch (type) {
 				case 'Object':
+					if (visited[_.util.objId(o)]) {
+						return visited[_.util.objId(o)];
+					}
 					var clone = {};
+					visited[_.util.objId(o)] = clone;
 
 					for (var key in o) {
 						if (o.hasOwnProperty(key)) {
-							clone[key] = _.util.clone(o[key]);
+							clone[key] = _.util.clone(o[key], visited);
 						}
 					}
 
 					return clone;
 
 				case 'Array':
-					return o.map(function(v) { return _.util.clone(v); });
+					if (visited[_.util.objId(o)]) {
+						return visited[_.util.objId(o)];
+					}
+					var clone = [];
+					visited[_.util.objId(o)] = clone;
+
+					o.forEach(function (v, i) {
+						clone[i] = _.util.clone(v, visited);
+					});
+
+					return clone;
 			}
 
 			return o;
@@ -4970,8 +5012,15 @@ var _ = _self.Prism = {
 	},
 
 	highlight: function (text, grammar, language) {
-		var tokens = _.tokenize(text, grammar);
-		return Token.stringify(_.util.encode(tokens), language);
+		var env = {
+			code: text,
+			grammar: grammar,
+			language: language
+		};
+		_.hooks.run('before-tokenize', env);
+		env.tokens = _.tokenize(env.code, env.grammar);
+		_.hooks.run('after-tokenize', env);
+		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
@@ -5019,15 +5068,9 @@ var _ = _self.Prism = {
 						continue;
 					}
 
-					pattern.lastIndex = 0;
-
-					var match = pattern.exec(str),
-					    delNum = 1;
-
-					// Greedy patterns can override/remove up to two previously matched tokens
-					if (!match && greedy && i != strarr.length - 1) {
+					if (greedy && i != strarr.length - 1) {
 						pattern.lastIndex = pos;
-						match = pattern.exec(text);
+						var match = pattern.exec(text);
 						if (!match) {
 							break;
 						}
@@ -5046,11 +5089,8 @@ var _ = _self.Prism = {
 							}
 						}
 
-						/*
-						 * If strarr[i] is a Token, then the match starts inside another Token, which is invalid
-						 * If strarr[k - 1] is greedy we are in conflict with another greedy pattern
-						 */
-						if (strarr[i] instanceof Token || strarr[k - 1].greedy) {
+						// If strarr[i] is a Token, then the match starts inside another Token, which is invalid
+						if (strarr[i] instanceof Token) {
 							continue;
 						}
 
@@ -5058,6 +5098,11 @@ var _ = _self.Prism = {
 						delNum = k - i;
 						str = text.slice(pos, p);
 						match.index -= pos;
+					} else {
+						pattern.lastIndex = 0;
+
+						var match = pattern.exec(str),
+							delNum = 1;
 					}
 
 					if (!match) {
@@ -5069,7 +5114,7 @@ var _ = _self.Prism = {
 					}
 
 					if(lookbehind) {
-						lookbehindLength = match[1].length;
+						lookbehindLength = match[1] ? match[1].length : 0;
 					}
 
 					var from = match.index + lookbehindLength,
@@ -5262,7 +5307,8 @@ Prism.languages.markup = {
 	'doctype': /<!DOCTYPE[\s\S]+?>/i,
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
 	'tag': {
-		pattern: /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		greedy: true,
 		inside: {
 			'tag': {
 				pattern: /^<\/?[^\s>\/]+/i,
@@ -5338,7 +5384,7 @@ Prism.languages.css = {
 	'punctuation': /[(){};:]/
 };
 
-Prism.languages.css['atrule'].inside.rest = Prism.util.clone(Prism.languages.css);
+Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
@@ -5382,7 +5428,8 @@ Prism.languages.clike = {
 		},
 		{
 			pattern: /(^|[^\\:])\/\/.*/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		}
 	],
 	'string': {
@@ -5399,7 +5446,7 @@ Prism.languages.clike = {
 	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
 	'boolean': /\b(?:true|false)\b/,
 	'function': /[a-z0-9_]+(?=\()/i,
-	'number': /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,
+	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
 	'punctuation': /[{}[\];(),.:]/
 };
@@ -5411,7 +5458,7 @@ Prism.languages.clike = {
 
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'keyword': /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
-	'number': /\b-?(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|\d*\.?\d+(?:[Ee][+-]?\d+)?|NaN|Infinity)\b/,
+	'number': /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
 	'function': /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/i,
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
@@ -5419,7 +5466,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /(^|[^/])\/(?!\/)(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
 		lookbehind: true,
 		greedy: true
 	},
@@ -5427,28 +5474,30 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	'function-variable': {
 		pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
 		alias: 'function'
-	}
+	},
+	'constant': /\b[A-Z][A-Z\d_]*\b/
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
 	'template-string': {
-		pattern: /`(?:\\[\s\S]|[^\\`])*`/,
+		pattern: /`(?:\\[\s\S]|\${[^}]+}|[^\\`])*`/,
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /\$\{[^}]+\}/,
+				pattern: /\${[^}]+}/,
 				inside: {
 					'interpolation-punctuation': {
-						pattern: /^\$\{|\}$/,
+						pattern: /^\${|}$/,
 						alias: 'punctuation'
 					},
-					rest: Prism.languages.javascript
+					rest: null // See below
 				}
 			},
 			'string': /[\s\S]+/
 		}
 	}
 });
+Prism.languages.javascript['template-string'].inside['interpolation'].inside.rest = Prism.languages.javascript;
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
@@ -5492,7 +5541,7 @@ Prism.languages.js = Prism.languages.javascript;
 			var src = pre.getAttribute('data-src');
 
 			var language, parent = pre;
-			var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+			var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 			while (parent && !lang.test(parent.className)) {
 				parent = parent.parentNode;
 			}
@@ -5539,12 +5588,26 @@ Prism.languages.js = Prism.languages.javascript;
 			xhr.send(null);
 		});
 
+		if (Prism.plugins.toolbar) {
+			Prism.plugins.toolbar.registerButton('download-file', function (env) {
+				var pre = env.element.parentNode;
+				if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
+					return;
+				}
+				var src = pre.getAttribute('data-src');
+				var a = document.createElement('a');
+				a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
+				a.setAttribute('download', '');
+				a.href = src;
+				return a;
+			});
+		}
+
 	};
 
 	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
 
 })();
-
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
@@ -5573,6 +5636,108 @@ try {
 
 module.exports = g;
 
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! showdown-youtube 29-11-2016 */(function (extension) {
+  'use strict';
+
+  if (typeof showdown !== 'undefined') {
+    extension(showdown);
+  } else if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (extension),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports === 'object') {
+    module.exports = extension(require('showdown'));
+  } else {
+    throw Error('Could not find showdown library');
+  }
+
+}(function (showdown) {
+  'use strict';
+
+  var svg =
+      '<div class="youtube-preview" style="width:%2; height:%3; background-color:#333; position:relative;">' +
+      '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" ' +
+      '     width="100" height="70" viewBox="0 0 100 70"' +
+      '     style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">' +
+      '    <defs>' +
+      '      <linearGradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">' +
+      '        <stop offset="0%" style="stop-color:rgb(229,45,49);stop-opacity:1" />' +
+      '        <stop offset="100%" style="stop-color:rgb(191,23,29);stop-opacity:1" />' +
+      '      </linearGradient>' +
+      '    </defs>' +
+      '    <rect width="100%" height="100%" rx="26" fill="url(#grad1)"/>' +
+      '    <polygon points="35,20 70,35 35,50" fill="#fff"/>' +
+      '    <polygon points="35,20 70,35 64,37 35,21" fill="#e8e0e0"/>' +
+      '</svg>' +
+      '<div style="text-align:center; padding-top:10px; color:#fff"><a href="%1">%1</a></div>' +
+      '</div>',
+    img = '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" width="%2" height="%3">',
+    iframe = '<iframe src="%1" width="%2" height="%3" frameborder="0" allowfullscreen></iframe>',
+    imgRegex = /(?:<p>)?<img.*?src="(.+?)"(.*?)\/?>(?:<\/p>)?/gi,
+    fullYoutubeRegex = /(?:(?:https?:)?(?:\/\/)?)(?:(?:www)?\.)?youtube\.(?:.+?)\/(?:(?:watch\?v=)|(?:embed\/))([a-zA-Z0-9_-]{11})/i,
+    shortYoutubeRegex = /(?:(?:https?:)?(?:\/\/)?)?youtu\.be\/([a-zA-Z0-9_-]{11})/i,
+    vimeoRegex = /(?:(?:https?:)?(?:\/\/)?)(?:(?:www)?\.)?vimeo.com\/(\d+)/;
+
+  function parseDimensions(rest, options) {
+    var width,
+      height,
+      d,
+      defaultWidth,
+      defaultHeight;
+
+    defaultWidth = options.youtubeWidth ? options.youtubeWidth : 420;
+    defaultHeight = options.youtubeHeight ? options.youtubeHeight : 315;
+
+    if (rest) {
+      width = (d = /width="(.+?)"/.exec(rest)) ? d[1] : defaultWidth;
+      height = (d = /height="(.+?)"/.exec(rest)) ? d[1] : defaultHeight;
+    }
+    if (/^\d+$/gm.exec(width)) {
+      width += 'px';
+    }
+    if (/^\d+$/gm.exec(height)) {
+      height += 'px';
+    }
+
+    return {
+      width: width,
+      height: height
+    };
+  }
+  showdown.extension('youtube', function () {
+    return [
+      {
+        type: 'output',
+        filter: function (text, converter, options) {
+          var tag = iframe;
+          if (options.smoothLivePreview) {
+            tag = (options.youtubeUseSimpleImg) ? img : svg;
+          }
+          return text.replace(imgRegex, function (match, url, rest) {
+            var d = parseDimensions(rest, options),
+              m, fUrl = '';
+            if ((m = shortYoutubeRegex.exec(url)) || (m = fullYoutubeRegex.exec(url))) {
+              fUrl = 'https://www.youtube.com/embed/' + m[1] + '?rel=0';
+            } else if ((m = vimeoRegex.exec(url))) {
+              fUrl = 'https://player.vimeo.com/video/' + m[1];
+            } else {
+              return match;
+            }
+            return tag.replace(/%1/g, fUrl).replace('%2', d.width).replace('%3', d.height);
+          });
+        }
+      }
+    ];
+  });
+}));
+
+//# sourceMappingURL=showdown-youtube.js.map
 
 /***/ })
 /******/ ]);
