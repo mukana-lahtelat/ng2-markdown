@@ -4606,9 +4606,13 @@ var _http = __webpack_require__(3);
 
 var _showdown = __webpack_require__(0);
 
+var showdown = _interopRequireWildcard(_showdown);
+
 __webpack_require__(4);
 
 __webpack_require__(6);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4624,7 +4628,7 @@ var MarkdownComponent = exports.MarkdownComponent = (_dec = (0, _core.Component)
     this.http = http;
     // reference to the DOM element
     this.element = elementRef.nativeElement;
-    _showdown.Showdown.extension('targetlink', function () {
+    showdown.extension('targetlink', function () {
       return [{
         type: 'lang',
         regex: /\[((?:\[[^\]]*]|[^\[\]])*)]\([ \t]*<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\4[ \t]*)?\)\{\:target=(["'])(.*)\6}/g,
